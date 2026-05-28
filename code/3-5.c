@@ -8,11 +8,20 @@ int main(int argc, const char* argv[]) {
         return 0;
     }
 
-
     int sum = 0;
+    char buffer[100];
+    int value;
 
-
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        if (sscanf(buffer, "%d", &value) == 1) {
+            sum += value;
+        } else {
+            fprintf(stderr, "invalid input %s", buffer);
+        }
+    }
+    
     printf("sum: %d\n", sum);
     fclose(fp);
+
     return 0;
 }
